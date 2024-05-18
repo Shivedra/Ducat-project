@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <style>
+        /*@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css');*/
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
+        @import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
+
+        :root {
+            --backgroundColor: #000000;
+            --textColor: #f9f5ff;
+            --font-family: "Open Sans", sans-serif;
+            --backgroundHover: #564c4c;
+        }
+
+        body {
+            font-family: var(--font-family);
+        }
+
+        .multi-level-menu-wrapper {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            margin: auto;
+            width: 300px;
+            background-color: var(--backgroundColor);
+            overflow: hidden;
+            visibility: hidden;
+        }
+
+        .multi-level-menu-wrapper ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .multi-level-menu-wrapper ul li {
+            color: var(--textColor);
+        }
+
+        .multi-level-menu-wrapper ul li:hover {
+            background-color: var(--backgroundHover);
+            cursor: pointer;
+        }
+
+        .multi-level-menu-wrapper ul li a {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 20px;
+            text-decoration: none;
+            color: var(--textColor);
+        }
+
+        .multi-level-menu-wrapper ul li a .icon {
+            margin-right: 10px;
+            height: 30px;
+            width: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .multi-level-menu-wrapper ul li.hasSubMenu {
+            padding-right: 50px;
+            position: relative;
+        }
+
+        .multi-level-menu-wrapper ul li.hasSubMenu .trigger {
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            width: 50px;
+        }
+
+        .multi-level-menu-wrapper .mainMenu,
+        .multi-level-menu-wrapper .subMenu {
+            background-color: var(--backgroundColor);
+        }
+
+        .multi-level-menu-wrapper .subMenu {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 100%;
+            width: 300px;
+            margin: auto;
+            transition: all ease-in-out 0.5s;
+        }
+
+        .multi-level-menu-wrapper .subMenu .backTrigger {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 20px;
+            text-decoration: none;
+            color: var(--textColor);
+        }
+
+        .multi-level-menu-wrapper .subMenu .backTrigger:hover {
+            background-color: var(--backgroundHover);
+            cursor: pointer;
+        }
+
+        .multi-level-menu-wrapper .subMenu .backTrigger .icon {
+            margin-right: 10px;
+        }
+
+        .multi-level-menu-wrapper .subMenu.active {
+            left: 0;
+        }
+
+        html,
+        body,
+        div,
+        section {
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        .container {
+
+            width: 100vw;
+            height: 100px;
+            z-index: 1;
+            position: relative;
+            /* background-color: #11265b; */
+            /* box-sizing: border-box; */
+            /* background-size: cover; */
+
+        }
+
+        .container>div>span {
+            border: 2px solid rgb(255, 255, 255);
+            padding: 5px;
+            position: fixed;
+            right: 10px;
+            color: rgb(255, 255, 255);
+            cursor: pointer;
+        }
+
+        #closebtn {
+            border-radius: 100%;
+            z-index: 999;
+            display: none;
+
+        }
+
+
+        #bth12 {
+            height: 30px;
+
+            border-radius: 15px;
+            background-color: transparent;
+            color: rgb(255, 255, 255);
+            /* border-color: white; */
+            border: 1px solid rgb(255, 255, 255);
+            padding: 5px;
+            /* float: right; */
+
+        }
+
+
+        div#btn12 {
+            margin-top: -58px;
+        }
+
+        .call>button {
+            /* background-color: #090a0d; */
+            height: 30px;
+
+            border-radius: 15px;
+            background-color: transparent;
+            color: rgb(255, 255, 255);
+            /* border-color: white; */
+            border: 1px solid rgb(255, 255, 255);
+            padding: 5px;
+            /* float: right; */
+        }
+
+
+
+        span#closebtn {
+            margin-top: -38px;
+            color: white;
+        }
+
+        #serchbth {
+            color: white;
+            background-color: transparent;
+            border: none;
+            /* cursor: pointer; */
+            padding: 20px;
+            padding-left: 58px;
+            padding-right: 80px;
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+    <div class="container">
+
+
+
+        <!--  <div> <span >&#9776;</span> <span id="closebtn" onclick="hidefunc()">X</span></div> -->
+
+        <div class="row">
+            <!-- <div class="call"> <img src="./images (1).png" style="width: 250px; height: 120px;"> </div> -->
+            <div class="call"> <img src="./images (1).png" style="width: 256px; height: 71px;"> </div>
+
+
+            <!-- style="margin-bottom: -105px; -->
+            <div class="call" id="btn12">
+                <!-- <button class="bth12">Student Login</button>
+                <button class="bth12">GUEE 2018 Login </button> -->
+
+                <button style="margin-left: 950px;">Student Login</button>
+                <button>GUEE 2018 Login </button>
+            </div>
+        </div>
+
+
+
+        <!-- -------------------------------------------------------------- -->
+        <style>
+            #backTrigger input :hover {
+                border: none;
+            }
+        </style>
+
+        <div> <span id="open" style="border-radius: 100%;   margin-top: -30px;">&#9776;</span>
+            <span id="closebtn"><i class="fas fa-times"></i>
+            </span>
+        </div>
+
+
+        <div class="multi-level-menu-wrapper">
+            <div class="mainMenu">
+                <ul>
+                    <div class="backTrigger">
+                        <!-- <i class="fa-solid fa-magnifying-glass" style="  color: white; padding: 20px;"></i> Back -->
+
+                        <button id="serchbth">
+                            serch</button>
+                        <!-- <input type="text" placeholder="Search.."
+                            style=" color: white; background-color: transparent; border: 1px solid pink !important; padding: 17px; padding-left: 40px;"> -->
+                        <i class="fa-solid fa-magnifying-glass" style="  color: white; padding: 10px;"></i>
+
+                    </div>
+                    <li class="hasSubMenu" data-target="#home">
+                        <a href="#"><i class="fas fa-home icon"></i>HOME</a>
+                        <div class="trigger">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </li>
+
+
+                    <li class="hasSubMenu" data-target="#home">
+
+                        <a href="#"><i class="fas fa-info icon"></i>ABOUT</a>
+                        <div class="trigger">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </li>
+
+
+                    <li class="hasSubMenu" data-target="#about">
+                        <a href="#"><i class="fas fa-images icon"></i>GALLERY</a>
+                        <div class="trigger">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </li>
+
+                    <li>
+                        <a href="#"><i class="fas fa-address-card icon"></i> CONTACT</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-handshake icon"></i> SERVICES</a>
+                    </li>
+                </ul>
+            </div>
+
+
+            <!--    Level 1    -->
+            <div class="subMenu" id="home">
+                <div class="backTrigger">
+                    <i class="fas fa-arrow-left icon"></i> Back
+                </div>
+                <ul>
+                    <li class="hasSubMenu" data-target="#home2">
+                        <a href="#">Home-1</a>
+                        <div class="trigger">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </li>
+                    <li><a href="#">Home-1</a></li>
+                    <li><a href="#">Home-1</a></li>
+                    <li><a href="#">Home-1</a></li>
+                    <li><a href="#">Home-1</a></li>
+                </ul>
+            </div>
+
+            <div class="subMenu" id="about">
+                <div class="backTrigger">
+                    <i class="fas fa-arrow-left icon"></i> Back
+                </div>
+                <ul>
+                    <li><a href="#">About-1</a></li>
+                    <li><a href="#">About-1</a></li>
+                    <li><a href="#">About-1</a></li>
+                    <li><a href="#">About-1</a></li>
+                    <li><a href="#">About-1</a></li>
+                </ul>
+            </div>
+
+            <!-- level 2 -->
+            <div class="subMenu" id="home2">
+                <div class="backTrigger">
+                    <i class="fas fa-arrow-left icon"></i> Back
+                </div>
+                <ul>
+                    <li class="hasSubMenu" data-target="#home3">
+                        <a href="#">Home-2</a>
+                        <div class="trigger">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </li>
+                    <li><a href="#">Home-2</a></li>
+                    <li><a href="#">Home-2</a></li>
+                    <li><a href="#">Home-2</a></li>
+                    <li><a href="#">Home-2</a></li>
+                </ul>
+            </div>
+
+            <!-- level 3 -->
+            <div class="subMenu" id="home3">
+                <div class="backTrigger">
+                    <i class="fas fa-arrow-left icon"></i> Back
+                </div>
+                <ul>
+                    <li class="hasSubMenu" data-target="#home4">
+                        <a href="#">Home-3</a>
+                        <div class="trigger">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </li>
+                    <li><a href="#">Home-3</a></li>
+                    <li><a href="#">Home-3</a></li>
+                    <li><a href="#">Home-3</a></li>
+                    <li><a href="#">Home-3</a></li>
+                </ul>
+            </div>
+
+            <!-- level 3 -->
+            <div class="subMenu" id="home4">
+                <div class="backTrigger">
+                    <i class="fas fa-arrow-left icon"></i> Back
+                </div>
+                <ul>
+                    <li data-target="#home4">
+                        <a href="#">Home-4</a>
+                    </li>
+                    <li><a href="#">Home-4</a></li>
+                    <li><a href="#">Home-4</a></li>
+                    <li><a href="#">Home-4</a></li>
+                    <li><a href="#">Home-4</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+
+
+
+
+    </div>
+
+    <div>
+
+        <video autoplay muted loop id="myVideo">
+            <source src="./Sidebar/banner.mp4" type="video/mp4 ">
+        </video>
+    </div>
+
+
+    <style>
+        #myVideo {
+            position: fixed;
+
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+        }
+    </style>
+
+    <!-- ----------------------Hoverable Sidenav Buttons---------------------- -->
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+
+    <!-- <div class="container-fluid"> -->
+
+    <div id="mySidenav" class="sidenav">
+        <!-- <a href="#" id="about"><i class="fa fa-circle about"></i> About</a> -->
+        <a href="#" id="about"><i class="fa fa-whatsapp"> </i> Whats app </a>
+        <a href="#" id="blog"><i class="fa-brands fa-instagram"></i> Instagram</a>
+        <a href="#" id="projects"><i class="fa-brands fa-facebook-f"></i> Facebook</a>
+        <a href="#" id="contact"><i class="fa-brands fa-twitter"></i> Twitter</a>
+    </div>
+
+
+    <div class="container-fluid" style=" background-color: transparent; color: #000000;">
+        <div class="row">
+            <div class="call"> <button>hellow</button></div>
+            <div class="call"><button>nwjndn</button></div>
+            <div class="call"><button>helloe</button></div>
+        </div>
+    </div>
+
+
+    <!-- </div> -->
+
+
+    <style>
+        #mySidenav a {
+            margin-left: 130px;
+            transition: 0.40s;
+            position: fixed !important;
+            right: auto;
+        }
+
+        #mySidenav a {
+            position: absolute;
+            right: -137px;
+            transition: 0.3s;
+            padding: 15px;
+            width: 140px;
+            /* width: 50px !important; */
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            border-radius: 30px 0 0 30px;
+            margin-top: 150px;
+
+        }
+
+        #mySidenav a:hover {
+            width: 250px;
+            transition: 0.2s;
+            margin-left: 50px;
+
+        }
+
+        #about {
+            top: 20px;
+            background-color: #d20b0b;
+        }
+
+        #blog {
+            top: 80px;
+            background-color: #2196F3;
+        }
+
+        #projects {
+            top: 140px;
+            background-color: #f44336;
+        }
+
+        #contact {
+            top: 200px;
+            background-color: #555
+        }
+    </style>
+
+
+
+    <div style="background-color: transparent; border: 5px solod; height: 20px;"> hellow</div>
+
+
+
+
+    <script>
+
+
+        $(document).ready(function () {
+            $("#about").on("click", function () {
+                $("#about").css("right", "0");
+                $("#blog").css("right", "-60px");
+                $("#projects").css("right", "-60px");
+                $("#contact").css("right", "-60px");
+                $("a").css("right", "0");
+            });//End of about click
+
+            $("#blog").on("click", function () {
+                $("#blog").css("right", "0");
+                $("#about").css("right", "-60px");
+                $("#projects").css("right", "-60px");
+                $("#contact").css("right", "-60px");
+            });//End of blog click
+
+            $("#projects").on("click", function () {
+                $("#projects").css("right", "0");
+                $("#about").css("right", "-60px");
+                $("#blog").css("right", "-60px");
+                $("#contact").css("right", "-60px");
+            });//End of projects click
+
+            $("#contact").on("click", function () {
+                $("#contact").css("right", "0");
+                $("#about").css("right", "-60px");
+                $("#blog").css("right", "-60px");
+                $("#projects").css("right", "-60px");
+            });//End of contact click
+
+        });//End of document ready
+
+    </script>
+
+
+    <!-- ----------------------Hoverable Sidenav Buttons---------------------- -->
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+
+        const multiLevelMenu = document.querySelector(".multi-level-menu-wrapper");
+
+
+        $(document).ready(function () {
+            $(".multi-level-menu-wrapper").each(function (index, mlMenu) {
+                var subMenuItems = $(mlMenu).find(".hasSubMenu");
+                console.log("subMenuItems", subMenuItems)
+
+                subMenuItems.each(function (i, subMenu) {
+                    $(subMenu).find(".trigger").on("click", function () {
+                        var target = $(subMenu).attr("data-target");
+                        $(target).addClass("active");
+                    });
+                });
+
+                $(".backTrigger").on("click", function () {
+                    var _backTrigger = this;
+                    $(_backTrigger).parent(".subMenu").removeClass("active");
+                });
+
+            });
+
+            $("#open").click(function () {
+                $("#closebtn").show();
+                $(".multi-level-menu-wrapper").css({ "visibility": 'visible' });
+            })
+            $("#closebtn").click(function () {
+                $(".multi-level-menu-wrapper").css({ "visibility": 'hidden' });
+                $(this).hide();
+            })
+        });
+
+
+        function showandhide() {
+            multiLevelMenu.style.visibility = "visible";
+        }
+        function hidefunc() {
+            multiLevelMenu.style.visibility = "hidden";
+        }
+    </script>
+
+
+
+</body>
+
+</html>
